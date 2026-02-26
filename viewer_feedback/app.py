@@ -126,9 +126,11 @@ with st.sidebar:
     col_prev, col_next = st.columns(2)
     if col_prev.button("◀ Prev"):
         st.session_state.pat_idx = max(0, st.session_state.pat_idx - 1)
+        st.session_state.pat_select = PIDS[st.session_state.pat_idx]
         st.rerun()
     if col_next.button("Next ▶"):
         st.session_state.pat_idx = min(len(PIDS) - 1, st.session_state.pat_idx + 1)
+        st.session_state.pat_select = PIDS[st.session_state.pat_idx]
         st.rerun()
 
     selected_pid = st.selectbox(
