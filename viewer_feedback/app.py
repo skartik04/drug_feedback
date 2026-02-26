@@ -34,8 +34,13 @@ DR_COLS = {
 def load_evals(reviewer):
     path = os.path.join(EVAL_DIR, f'feedback_{reviewer}.csv')
     if os.path.exists(path):
-        df = pd.read_csv(path, dtype=str).fillna('')
-        return {(r['pid'], int(r['visit'])): r.to_dict() for _, r in df.iterrows()}
+        try:
+            df = pd.read_csv(path, dtype=str).fillna('')
+            if df.empty:
+                return {}
+            return {(r['pid'], int(r['visit'])): r.to_dict() for _, r in df.iterrows()}
+        except pd.errors.EmptyDataError:
+            return {}
     return {}
 
 def save_evals(reviewer, evals):
