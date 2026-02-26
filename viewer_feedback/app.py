@@ -80,14 +80,34 @@ with st.sidebar:
 
     reviewer = reviewer.strip()
 
-    # reload evals when reviewer changes
+    # reload evals when reviewer changes + auto-navigate to last reviewed patient
     if st.session_state.get('reviewer') != reviewer:
         st.session_state.reviewer = reviewer
         st.session_state.evals    = load_evals(reviewer)
+        if st.session_state.evals:
+            last = list(st.session_state.evals.values())[-1]
+            last_pid = last.get('pid', '')
+            if last_pid in PIDS:
+                st.session_state.pat_idx = PIDS.index(last_pid)
 
     evals    = st.session_state.evals
     reviewed = len(evals)
     st.caption(f"Progress: {reviewed} / {TOTAL} reviewed")
+
+    col_resume, col_fresh = st.columns(2)
+    if col_resume.button("Resume", use_container_width=True):
+        st.session_state.evals = load_evals(reviewer)
+        if st.session_state.evals:
+            last = list(st.session_state.evals.values())[-1]
+            last_pid = last.get('pid', '')
+            if last_pid in PIDS:
+                st.session_state.pat_idx = PIDS.index(last_pid)
+        st.rerun()
+    if col_fresh.button("Start Fresh", use_container_width=True):
+        st.session_state.evals = {}
+        st.session_state.pat_idx = 0
+        save_evals(reviewer, {})
+        st.rerun()
 
     if evals:
         csv_bytes = pd.DataFrame(list(evals.values())).to_csv(index=False).encode()
