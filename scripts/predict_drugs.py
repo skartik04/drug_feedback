@@ -251,7 +251,7 @@ def build_current_medications(visit_name: str, all_visits: dict) -> str:
     if not found_any:
         lines.append("No prior medication information available.")
     else:
-        lines.insert(1, "Status key: current (on arrival) = patient is actively taking this drug coming into this visit; previously tried = drug was used before but is NOT currently active (already stopped).")
+        pass
 
     return "\n".join(lines)
 
