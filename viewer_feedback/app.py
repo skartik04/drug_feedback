@@ -34,13 +34,8 @@ DR_COLS = {
 def load_evals(reviewer):
     path = os.path.join(EVAL_DIR, f'feedback_{reviewer}.csv')
     if os.path.exists(path):
-        try:
-            df = pd.read_csv(path, dtype=str).fillna('')
-            if df.empty:
-                return {}
-            return {(r['pid'], int(r['visit'])): r.to_dict() for _, r in df.iterrows()}
-        except pd.errors.EmptyDataError:
-            return {}
+        df = pd.read_csv(path, dtype=str).fillna('')
+        return {(r['pid'], int(r['visit'])): r.to_dict() for _, r in df.iterrows()}
     return {}
 
 def save_evals(reviewer, evals):
@@ -85,34 +80,14 @@ with st.sidebar:
 
     reviewer = reviewer.strip()
 
-    # reload evals when reviewer changes + auto-navigate to last reviewed patient
+    # reload evals when reviewer changes
     if st.session_state.get('reviewer') != reviewer:
         st.session_state.reviewer = reviewer
         st.session_state.evals    = load_evals(reviewer)
-        if st.session_state.evals:
-            last = list(st.session_state.evals.values())[-1]
-            last_pid = last.get('pid', '')
-            if last_pid in PIDS:
-                st.session_state.pat_idx = PIDS.index(last_pid)
 
     evals    = st.session_state.evals
     reviewed = len(evals)
     st.caption(f"Progress: {reviewed} / {TOTAL} reviewed")
-
-    col_resume, col_fresh = st.columns(2)
-    if col_resume.button("Resume", use_container_width=True):
-        st.session_state.evals = load_evals(reviewer)
-        if st.session_state.evals:
-            last = list(st.session_state.evals.values())[-1]
-            last_pid = last.get('pid', '')
-            if last_pid in PIDS:
-                st.session_state.pat_idx = PIDS.index(last_pid)
-        st.rerun()
-    if col_fresh.button("Start Fresh", use_container_width=True):
-        st.session_state.evals = {}
-        st.session_state.pat_idx = 0
-        save_evals(reviewer, {})
-        st.rerun()
 
     if evals:
         csv_bytes = pd.DataFrame(list(evals.values())).to_csv(index=False).encode()
@@ -131,11 +106,9 @@ with st.sidebar:
     col_prev, col_next = st.columns(2)
     if col_prev.button("◀ Prev"):
         st.session_state.pat_idx = max(0, st.session_state.pat_idx - 1)
-        st.session_state.pat_select = PIDS[st.session_state.pat_idx]
         st.rerun()
     if col_next.button("Next ▶"):
         st.session_state.pat_idx = min(len(PIDS) - 1, st.session_state.pat_idx + 1)
-        st.session_state.pat_select = PIDS[st.session_state.pat_idx]
         st.rerun()
 
     selected_pid = st.selectbox(
@@ -214,33 +187,54 @@ with left:
     st.markdown("---")
     st.markdown("### Feedback")
 
-    judgment_options = ["Yes", "No"]
-    default_idx = judgment_options.index(existing["judgment"]) if existing.get("judgment") in judgment_options else None
-    fb_key   = f"{pid}__v{visit_num}__{reviewer}"
-    st.markdown("Do you agree with the model reasoning for the drug prediction task?")
-    judgment = st.radio("", judgment_options, index=default_idx, horizontal=True, key=f"judgment_{fb_key}")
-    comment  = st.text_area("Comment (optional)", value=existing.get("comment", ""), height=100, key=f"comment_{fb_key}")
+    JUDGMENT_OPTIONS = [
+        "Agreed with both LLM and physician",
+        "Agreed with LLM only",
+        "Agreed with physician only",
+        "Agreed with neither",
+    ]
+
+    fb_key  = f"{pid}__v{visit_num}__{reviewer}"
+    sel_key = f"judgment_sel_{fb_key}"
+
+    if sel_key not in st.session_state:
+        st.session_state[sel_key] = existing.get("judgment", None)
+
+    st.markdown("How do you assess the prediction?")
+
+    row1 = st.columns(2)
+    row2 = st.columns(2)
+    for col, option in zip([row1[0], row1[1], row2[0], row2[1]], JUDGMENT_OPTIONS):
+        is_selected = st.session_state[sel_key] == option
+        if col.button(
+            ("✓  " if is_selected else "") + option,
+            key=f"btn_{fb_key}_{option}",
+            use_container_width=True,
+            type="primary" if is_selected else "secondary",
+        ):
+            st.session_state[sel_key] = option
+            current = st.session_state.evals.get((pid, visit_num), {})
+            st.session_state.evals[(pid, visit_num)] = {
+                "pid": pid, "visit": visit_num,
+                "judgment": option,
+                "comment": current.get("comment", ""),
+            }
+            save_evals(reviewer, st.session_state.evals)
+            st.rerun()
+
+    judgment = st.session_state[sel_key]
+
+    comment = st.text_area("Comment (optional)", value=existing.get("comment", ""), height=100, key=f"comment_{fb_key}")
 
     if st.button("Save Comment", key=f"submit_{fb_key}"):
         if judgment is None:
-            st.warning("Please select Yes or No first.")
+            st.warning("Please select one of the options above first.")
         else:
             st.session_state.evals[(pid, visit_num)] = {
                 "pid": pid, "visit": visit_num, "judgment": judgment, "comment": comment
             }
             save_evals(reviewer, st.session_state.evals)
             st.success("Saved!")
-
-    # auto-save judgment on selection
-    if judgment is not None:
-        current = st.session_state.evals.get((pid, visit_num), {})
-        if current.get("judgment") != judgment:
-            st.session_state.evals[(pid, visit_num)] = {
-                "pid": pid, "visit": visit_num,
-                "judgment": judgment,
-                "comment": current.get("comment", ""),
-            }
-            save_evals(reviewer, st.session_state.evals)
 
 with right:
     think = out.get('think', '')
