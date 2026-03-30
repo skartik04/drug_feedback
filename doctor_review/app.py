@@ -111,6 +111,32 @@ def save_evals(reviewer, evals):
     pd.DataFrame(list(evals.values())).to_csv(path, index=False)
 
 
+def delete_evals(reviewer):
+    path = os.path.join(EVAL_DIR, f"dr_review_{reviewer}.csv")
+    if os.path.exists(path):
+        os.remove(path)
+
+
+def maybe_autosave_feedback(reviewer, pid, visit_num, cohort, therapy_cls, fb_key):
+    record = {
+        "pid": pid,
+        "visit": visit_num,
+        "cohort": cohort,
+        "therapy_cls": therapy_cls,
+        "comment": st.session_state.get(f"comment_{fb_key}", ""),
+    }
+    complete = True
+    for field, _ in FEEDBACK_QUESTIONS:
+        value = st.session_state.get(f"{field}_{fb_key}")
+        record[field] = value or ""
+        if not value:
+            complete = False
+
+    if complete:
+        st.session_state.evals[(pid, visit_num)] = record
+        save_evals(reviewer, st.session_state.evals)
+
+
 def build_pdf_input(pid, visit_num, pdf_split):
     """Build cumulative context string for a PDF patient up to visit_num."""
     visits = pdf_split.get(pid, {})
@@ -203,6 +229,7 @@ st.markdown(
 review_entries = json.load(open(REVIEW_IDS))
 pid_meta = {e["pid"]: e for e in review_entries}
 PIDS = [e["pid"] for e in review_entries]
+TOTAL = len(PIDS) * 3
 
 # ── sidebar ───────────────────────────────────────────────────────────────────
 
@@ -221,7 +248,7 @@ with st.sidebar:
         st.session_state.evals = load_evals(reviewer)
 
     evals = st.session_state.evals
-    st.caption(f"Feedback saved: {len(evals)}")
+    st.caption(f"Progress: {len(evals)} / {TOTAL} reviewed")
 
     if evals:
         csv_bytes = pd.DataFrame(list(evals.values())).to_csv(index=False).encode()
@@ -231,6 +258,15 @@ with st.sidebar:
             file_name=f"dr_review_{reviewer}.csv",
             mime="text/csv",
         )
+
+    if st.button("Start Fresh", use_container_width=True):
+        delete_evals(reviewer)
+        st.session_state.evals = {}
+        suffix = f"__{reviewer}"
+        for key in list(st.session_state.keys()):
+            if suffix in key:
+                del st.session_state[key]
+        st.rerun()
 
     st.divider()
     st.header("Navigation")
@@ -327,7 +363,7 @@ with left:
 
     fb_key = f"{pid}__v{visit_num}__{reviewer}"
     existing = st.session_state.evals.get((pid, visit_num), {})
-    st.caption("Answer each item with Yes, No, or N/A. Use N/A if not applicable or not assessable.")
+    st.caption("Auto-save is on. Answers save automatically once all questions are filled. Use N/A if not applicable or not assessable.")
 
     responses = {}
     for field, question in FEEDBACK_QUESTIONS:
@@ -340,6 +376,8 @@ with left:
             index=None,
             horizontal=True,
             key=q_key,
+            on_change=maybe_autosave_feedback,
+            args=(reviewer, pid, visit_num, cohort, therapy_cls, fb_key),
         )
 
     comment = st.text_area(
@@ -347,22 +385,15 @@ with left:
         value=existing.get("comment", ""),
         height=100,
         key=f"comment_{fb_key}",
+        on_change=maybe_autosave_feedback,
+        args=(reviewer, pid, visit_num, cohort, therapy_cls, fb_key),
     )
-    if st.button("Save Feedback", key=f"submit_{fb_key}"):
+    if (pid, visit_num) in st.session_state.evals:
+        st.success("Saved")
+    else:
         missing = [question for field, question in FEEDBACK_QUESTIONS if not responses.get(field)]
         if missing:
-            st.warning("Please answer all questions. Use N/A where needed.")
-        else:
-            st.session_state.evals[(pid, visit_num)] = {
-                "pid": pid,
-                "visit": visit_num,
-                "cohort": cohort,
-                "therapy_cls": therapy_cls,
-                "comment": comment,
-                **responses,
-            }
-            save_evals(reviewer, st.session_state.evals)
-            st.success("Saved!")
+            st.caption(f"{len(missing)} questions left before auto-save.")
 
 
 # ── RIGHT: Multi-Agent vs Baseline ────────────────────────────────────────────
