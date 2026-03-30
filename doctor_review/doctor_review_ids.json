@@ -1,0 +1,422 @@
+[
+  {
+    "pid": "MUHANGUZI_JOSEPH",
+    "cohort": "pdf",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "136_Ssejjengo Hashim",
+    "cohort": "csv",
+    "therapy_cls": "always_poly",
+    "n_visits": 3
+  },
+  {
+    "pid": "MUGISHA_CALEB",
+    "cohort": "pdf",
+    "therapy_cls": "transition",
+    "n_visits": 4
+  },
+  {
+    "pid": "NAMWANGA MELLAN",
+    "cohort": "pdf",
+    "therapy_cls": "always_mono",
+    "n_visits": 4
+  },
+  {
+    "pid": "JANELLE_ELIZABETH_2",
+    "cohort": "pdf",
+    "therapy_cls": "always_poly",
+    "n_visits": 3
+  },
+  {
+    "pid": "ASIIMWE MIRACLE",
+    "cohort": "pdf",
+    "therapy_cls": "transition",
+    "n_visits": 4
+  },
+  {
+    "pid": "LINDA ROSEMARY",
+    "cohort": "pdf",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "ABONGA_MATTHEW",
+    "cohort": "pdf",
+    "therapy_cls": "transition",
+    "n_visits": 3
+  },
+  {
+    "pid": "46_Kabonge Aaron",
+    "cohort": "csv",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "DDEMBE ABIGAIL",
+    "cohort": "pdf",
+    "therapy_cls": "always_mono",
+    "n_visits": 4
+  },
+  {
+    "pid": "310_Lugemwa Emma",
+    "cohort": "csv",
+    "therapy_cls": "always_poly",
+    "n_visits": 3
+  },
+  {
+    "pid": "KISEMBO RONALD",
+    "cohort": "pdf",
+    "therapy_cls": "transition",
+    "n_visits": 4
+  },
+  {
+    "pid": "NAKISEKA_SHALOM",
+    "cohort": "pdf",
+    "therapy_cls": "transition",
+    "n_visits": 3
+  },
+  {
+    "pid": "BULUMA_JONATHAN",
+    "cohort": "pdf",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "241_Nakagera Rhama",
+    "cohort": "csv",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "307_Sembatya Tian",
+    "cohort": "csv",
+    "therapy_cls": "transition",
+    "n_visits": 3
+  },
+  {
+    "pid": "153_Kakande Huzaifa",
+    "cohort": "csv",
+    "therapy_cls": "always_poly",
+    "n_visits": 3
+  },
+  {
+    "pid": "SHALOM_KEEZA",
+    "cohort": "pdf",
+    "therapy_cls": "always_poly",
+    "n_visits": 3
+  },
+  {
+    "pid": "114_Iratukunda Danita",
+    "cohort": "csv",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "KAYONGO MOSES",
+    "cohort": "pdf",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "MWAMBA_MIRADI",
+    "cohort": "pdf",
+    "therapy_cls": "always_mono",
+    "n_visits": 4
+  },
+  {
+    "pid": "286_Kanyesubula Nicholas",
+    "cohort": "csv",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "KATO_ELVIS",
+    "cohort": "pdf",
+    "therapy_cls": "always_mono",
+    "n_visits": 4
+  },
+  {
+    "pid": "327_Ssekamatta Darlene Rose",
+    "cohort": "csv",
+    "therapy_cls": "transition",
+    "n_visits": 3
+  },
+  {
+    "pid": "306_Mustakim Abdi",
+    "cohort": "csv",
+    "therapy_cls": "transition",
+    "n_visits": 3
+  },
+  {
+    "pid": "BISASO_ETHAN",
+    "cohort": "pdf",
+    "therapy_cls": "always_poly",
+    "n_visits": 4
+  },
+  {
+    "pid": "110_Manozi Angella",
+    "cohort": "csv",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "321_Abdiaz Abdulah",
+    "cohort": "csv",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "209_Semwogerere Annul",
+    "cohort": "csv",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "124_Afaayo Francis",
+    "cohort": "csv",
+    "therapy_cls": "always_poly",
+    "n_visits": 3
+  },
+  {
+    "pid": "182_Lubega Joel",
+    "cohort": "csv",
+    "therapy_cls": "transition",
+    "n_visits": 3
+  },
+  {
+    "pid": "263_Nabukenya Abigail",
+    "cohort": "csv",
+    "therapy_cls": "transition",
+    "n_visits": 3
+  },
+  {
+    "pid": "KUNIHIRA PRECIOUS",
+    "cohort": "pdf",
+    "therapy_cls": "always_poly",
+    "n_visits": 4
+  },
+  {
+    "pid": "88_Kamoga Joseph",
+    "cohort": "csv",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "89_Lukwago Benjamin",
+    "cohort": "csv",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "268_Serukera Bahati",
+    "cohort": "csv",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "MULANGIRA ALFRED",
+    "cohort": "pdf",
+    "therapy_cls": "transition",
+    "n_visits": 3
+  },
+  {
+    "pid": "KYAGABA ANGELICA",
+    "cohort": "pdf",
+    "therapy_cls": "transition",
+    "n_visits": 4
+  },
+  {
+    "pid": "LUBOWA_JEREMIAH",
+    "cohort": "pdf",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "KAYIWA RESHMA",
+    "cohort": "pdf",
+    "therapy_cls": "transition",
+    "n_visits": 3
+  },
+  {
+    "pid": "KAL GABRIEL JAYDEN",
+    "cohort": "pdf",
+    "therapy_cls": "always_poly",
+    "n_visits": 4
+  },
+  {
+    "pid": "FATUMA HASSAN",
+    "cohort": "pdf",
+    "therapy_cls": "transition",
+    "n_visits": 4
+  },
+  {
+    "pid": "MUKISA_ADRIAN",
+    "cohort": "pdf",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "269_Byamukama Morris",
+    "cohort": "csv",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "121_Kitaka Raymond",
+    "cohort": "csv",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "ATWONGYEIRE_ISRAEL_2",
+    "cohort": "pdf",
+    "therapy_cls": "always_poly",
+    "n_visits": 3
+  },
+  {
+    "pid": "333_Murungi Isaac",
+    "cohort": "csv",
+    "therapy_cls": "always_poly",
+    "n_visits": 3
+  },
+  {
+    "pid": "BIYINZIKA BETTY",
+    "cohort": "pdf",
+    "therapy_cls": "always_mono",
+    "n_visits": 4
+  },
+  {
+    "pid": "246_Muwanguzi Marc Joseph",
+    "cohort": "csv",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "NAKAKANDE PEACE",
+    "cohort": "pdf",
+    "therapy_cls": "always_poly",
+    "n_visits": 4
+  },
+  {
+    "pid": "135_Best Betina",
+    "cohort": "csv",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "KIMULI UKASHA",
+    "cohort": "pdf",
+    "therapy_cls": "always_mono",
+    "n_visits": 4
+  },
+  {
+    "pid": "JOSHUE KEPLER",
+    "cohort": "pdf",
+    "therapy_cls": "always_mono",
+    "n_visits": 4
+  },
+  {
+    "pid": "157_Odong Raphael",
+    "cohort": "csv",
+    "therapy_cls": "always_poly",
+    "n_visits": 3
+  },
+  {
+    "pid": "MENYA_ADRIAN",
+    "cohort": "pdf",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "23_Namayanja Shuhaira",
+    "cohort": "csv",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "NAMUMBYA BEATRICE",
+    "cohort": "pdf",
+    "therapy_cls": "always_mono",
+    "n_visits": 4
+  },
+  {
+    "pid": "BUZIBA ARNOLD",
+    "cohort": "pdf",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "KAGIMU ERNEST",
+    "cohort": "pdf",
+    "therapy_cls": "always_mono",
+    "n_visits": 4
+  },
+  {
+    "pid": "39_Najjemba Christine",
+    "cohort": "csv",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "202_Kasule Amil",
+    "cohort": "csv",
+    "therapy_cls": "always_poly",
+    "n_visits": 3
+  },
+  {
+    "pid": "299_Serunjogi Ibrahim",
+    "cohort": "csv",
+    "therapy_cls": "transition",
+    "n_visits": 3
+  },
+  {
+    "pid": "47_Mugisha Silver",
+    "cohort": "csv",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "2_Mwania Sheldon",
+    "cohort": "csv",
+    "therapy_cls": "transition",
+    "n_visits": 3
+  },
+  {
+    "pid": "10_Muduku Matthew",
+    "cohort": "csv",
+    "therapy_cls": "always_poly",
+    "n_visits": 3
+  },
+  {
+    "pid": "266_Ssebunya Hashim",
+    "cohort": "csv",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "156_Irumba Peter",
+    "cohort": "csv",
+    "therapy_cls": "transition",
+    "n_visits": 3
+  },
+  {
+    "pid": "107_Ismahan Mahad",
+    "cohort": "csv",
+    "therapy_cls": "transition",
+    "n_visits": 3
+  },
+  {
+    "pid": "LULE DARWIN",
+    "cohort": "pdf",
+    "therapy_cls": "always_mono",
+    "n_visits": 4
+  },
+  {
+    "pid": "NSUBUGA_REMIGIUS",
+    "cohort": "pdf",
+    "therapy_cls": "always_mono",
+    "n_visits": 4
+  }
+]
