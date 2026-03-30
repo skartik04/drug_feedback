@@ -117,6 +117,30 @@ def delete_evals(reviewer):
         os.remove(path)
 
 
+def nav_path(reviewer):
+    return os.path.join(EVAL_DIR, f"nav_{reviewer}.json")
+
+
+def load_nav(reviewer):
+    path = nav_path(reviewer)
+    if os.path.exists(path):
+        with open(path) as f:
+            return json.load(f)
+    return {}
+
+
+def save_nav(reviewer, pid, visit):
+    path = nav_path(reviewer)
+    with open(path, "w") as f:
+        json.dump({"pid": pid, "visit": visit}, f)
+
+
+def delete_nav(reviewer):
+    path = nav_path(reviewer)
+    if os.path.exists(path):
+        os.remove(path)
+
+
 def build_feedback_record(pid, visit_num, cohort, therapy_cls, fb_key):
     record = {
         "pid": pid,
@@ -260,7 +284,11 @@ with st.sidebar:
             st.warning("Enter your name first.")
         else:
             delete_evals(target_reviewer)
+            delete_nav(target_reviewer)
             st.session_state.evals = {}
+            st.session_state.pat_idx = 0
+            st.session_state["pat_select"] = PIDS[0]
+            st.session_state["visit_select"] = 1
             suffix = f"__{target_reviewer}"
             for key in list(st.session_state.keys()):
                 if suffix in key:
@@ -280,6 +308,18 @@ with st.sidebar:
     if st.session_state.get("reviewer") != reviewer:
         st.session_state.reviewer = reviewer
         st.session_state.evals = load_evals(reviewer)
+        saved_nav = load_nav(reviewer)
+        saved_pid = saved_nav.get("pid")
+        saved_visit = saved_nav.get("visit")
+        if saved_pid in PIDS:
+            st.session_state.pat_idx = PIDS.index(saved_pid)
+            st.session_state["pat_select"] = saved_pid
+        else:
+            st.session_state.pat_idx = 0
+            st.session_state["pat_select"] = PIDS[0]
+        st.session_state["visit_select"] = (
+            saved_visit if saved_visit in [1, 2, 3] else 1
+        )
 
     evals = st.session_state.evals
     st.caption(f"Progress: {len(evals)} / {TOTAL} reviewed")
@@ -297,7 +337,11 @@ with st.sidebar:
     st.header("Navigation")
 
     visit_num = st.radio(
-        "Visit", [1, 2, 3], format_func=lambda v: f"Visit {v}", horizontal=True
+        "Visit",
+        [1, 2, 3],
+        format_func=lambda v: f"Visit {v}",
+        horizontal=True,
+        key="visit_select",
     )
 
     if "pat_idx" not in st.session_state:
@@ -335,6 +379,7 @@ with st.sidebar:
         "Patient", PIDS, index=st.session_state.pat_idx, key="pat_select"
     )
     st.session_state.pat_idx = PIDS.index(selected_pid)
+    save_nav(reviewer, selected_pid, visit_num)
     st.caption(f"{st.session_state.pat_idx + 1} / {len(PIDS)} patients")
 
 # ── main ──────────────────────────────────────────────────────────────────────
