@@ -117,7 +117,7 @@ def delete_evals(reviewer):
         os.remove(path)
 
 
-def maybe_autosave_feedback(reviewer, pid, visit_num, cohort, therapy_cls, fb_key):
+def build_feedback_record(pid, visit_num, cohort, therapy_cls, fb_key):
     record = {
         "pid": pid,
         "visit": visit_num,
@@ -126,15 +126,34 @@ def maybe_autosave_feedback(reviewer, pid, visit_num, cohort, therapy_cls, fb_ke
         "comment": st.session_state.get(f"comment_{fb_key}", ""),
     }
     complete = True
+    missing = []
     for field, _ in FEEDBACK_QUESTIONS:
         value = st.session_state.get(f"{field}_{fb_key}")
         record[field] = value or ""
         if not value:
             complete = False
+            missing.append(field)
 
+    return record, complete, missing
+
+
+def maybe_autosave_feedback(reviewer, pid, visit_num, cohort, therapy_cls, fb_key):
+    record, complete, _ = build_feedback_record(pid, visit_num, cohort, therapy_cls, fb_key)
     if complete:
         st.session_state.evals[(pid, visit_num)] = record
         save_evals(reviewer, st.session_state.evals)
+
+
+def save_feedback(reviewer, pid, visit_num, cohort, therapy_cls, fb_key):
+    record, complete, missing = build_feedback_record(
+        pid, visit_num, cohort, therapy_cls, fb_key
+    )
+    if not complete:
+        st.warning(f"Please fill all questions before saving. {len(missing)} left.")
+        return
+
+    st.session_state.evals[(pid, visit_num)] = record
+    save_evals(reviewer, st.session_state.evals)
 
 
 def build_pdf_input(pid, visit_num, pdf_split):
@@ -369,7 +388,11 @@ with left:
 
     fb_key = f"{pid}__v{visit_num}__{reviewer}"
     existing = st.session_state.evals.get((pid, visit_num), {})
-    st.caption("Auto-save is on. Answers save automatically once all questions are filled. Use N/A if not applicable or not assessable.")
+    st.caption(
+        "Answers auto-save once all questions are filled. "
+        "Use Save Feedback to save comment changes. "
+        "Use N/A if not applicable or not assessable."
+    )
 
     responses = {}
     for field, question in FEEDBACK_QUESTIONS:
@@ -391,9 +414,10 @@ with left:
         value=existing.get("comment", ""),
         height=100,
         key=f"comment_{fb_key}",
-        on_change=maybe_autosave_feedback,
-        args=(reviewer, pid, visit_num, cohort, therapy_cls, fb_key),
     )
+    if st.button("Save Feedback", key=f"save_feedback_{fb_key}"):
+        save_feedback(reviewer, pid, visit_num, cohort, therapy_cls, fb_key)
+
     if (pid, visit_num) in st.session_state.evals:
         st.success("Saved")
     else:
