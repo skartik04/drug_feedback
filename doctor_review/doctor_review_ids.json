@@ -1,7 +1,85 @@
 [
   {
-    "pid": "MUHANGUZI_JOSEPH",
-    "cohort": "pdf",
+    "pid": "2_Mwania Sheldon",
+    "cohort": "csv",
+    "therapy_cls": "transition",
+    "n_visits": 3
+  },
+  {
+    "pid": "10_Muduku Matthew",
+    "cohort": "csv",
+    "therapy_cls": "always_poly",
+    "n_visits": 3
+  },
+  {
+    "pid": "23_Namayanja Shuhaira",
+    "cohort": "csv",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "39_Najjemba Christine",
+    "cohort": "csv",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "46_Kabonge Aaron",
+    "cohort": "csv",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "47_Mugisha Silver",
+    "cohort": "csv",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "88_Kamoga Joseph",
+    "cohort": "csv",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "89_Lukwago Benjamin",
+    "cohort": "csv",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "107_Ismahan Mahad",
+    "cohort": "csv",
+    "therapy_cls": "transition",
+    "n_visits": 3
+  },
+  {
+    "pid": "110_Manozi Angella",
+    "cohort": "csv",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "114_Iratukunda Danita",
+    "cohort": "csv",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "121_Kitaka Raymond",
+    "cohort": "csv",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "124_Afaayo Francis",
+    "cohort": "csv",
+    "therapy_cls": "always_poly",
+    "n_visits": 3
+  },
+  {
+    "pid": "135_Best Betina",
+    "cohort": "csv",
     "therapy_cls": "always_mono",
     "n_visits": 3
   },
@@ -9,6 +87,42 @@
     "pid": "136_Ssejjengo Hashim",
     "cohort": "csv",
     "therapy_cls": "always_poly",
+    "n_visits": 3
+  },
+  {
+    "pid": "153_Kakande Huzaifa",
+    "cohort": "csv",
+    "therapy_cls": "always_poly",
+    "n_visits": 3
+  },
+  {
+    "pid": "156_Irumba Peter",
+    "cohort": "csv",
+    "therapy_cls": "transition",
+    "n_visits": 3
+  },
+  {
+    "pid": "157_Odong Raphael",
+    "cohort": "csv",
+    "therapy_cls": "always_poly",
+    "n_visits": 3
+  },
+  {
+    "pid": "182_Lubega Joel",
+    "cohort": "csv",
+    "therapy_cls": "transition",
+    "n_visits": 3
+  },
+  {
+    "pid": "202_Kasule Amil",
+    "cohort": "csv",
+    "therapy_cls": "always_poly",
+    "n_visits": 3
+  },
+  {
+    "pid": "MUHANGUZI_JOSEPH",
+    "cohort": "pdf",
+    "therapy_cls": "always_mono",
     "n_visits": 3
   },
   {
@@ -45,12 +159,6 @@
     "pid": "ABONGA_MATTHEW",
     "cohort": "pdf",
     "therapy_cls": "transition",
-    "n_visits": 3
-  },
-  {
-    "pid": "46_Kabonge Aaron",
-    "cohort": "csv",
-    "therapy_cls": "always_mono",
     "n_visits": 3
   },
   {
@@ -96,21 +204,9 @@
     "n_visits": 3
   },
   {
-    "pid": "153_Kakande Huzaifa",
-    "cohort": "csv",
-    "therapy_cls": "always_poly",
-    "n_visits": 3
-  },
-  {
     "pid": "SHALOM_KEEZA",
     "cohort": "pdf",
     "therapy_cls": "always_poly",
-    "n_visits": 3
-  },
-  {
-    "pid": "114_Iratukunda Danita",
-    "cohort": "csv",
-    "therapy_cls": "always_mono",
     "n_visits": 3
   },
   {
@@ -156,12 +252,6 @@
     "n_visits": 4
   },
   {
-    "pid": "110_Manozi Angella",
-    "cohort": "csv",
-    "therapy_cls": "always_mono",
-    "n_visits": 3
-  },
-  {
     "pid": "321_Abdiaz Abdulah",
     "cohort": "csv",
     "therapy_cls": "always_mono",
@@ -171,18 +261,6 @@
     "pid": "209_Semwogerere Annul",
     "cohort": "csv",
     "therapy_cls": "always_mono",
-    "n_visits": 3
-  },
-  {
-    "pid": "124_Afaayo Francis",
-    "cohort": "csv",
-    "therapy_cls": "always_poly",
-    "n_visits": 3
-  },
-  {
-    "pid": "182_Lubega Joel",
-    "cohort": "csv",
-    "therapy_cls": "transition",
     "n_visits": 3
   },
   {
@@ -196,18 +274,6 @@
     "cohort": "pdf",
     "therapy_cls": "always_poly",
     "n_visits": 4
-  },
-  {
-    "pid": "88_Kamoga Joseph",
-    "cohort": "csv",
-    "therapy_cls": "always_mono",
-    "n_visits": 3
-  },
-  {
-    "pid": "89_Lukwago Benjamin",
-    "cohort": "csv",
-    "therapy_cls": "always_mono",
-    "n_visits": 3
   },
   {
     "pid": "268_Serukera Bahati",
@@ -264,12 +330,6 @@
     "n_visits": 3
   },
   {
-    "pid": "121_Kitaka Raymond",
-    "cohort": "csv",
-    "therapy_cls": "always_mono",
-    "n_visits": 3
-  },
-  {
     "pid": "ATWONGYEIRE_ISRAEL_2",
     "cohort": "pdf",
     "therapy_cls": "always_poly",
@@ -300,12 +360,6 @@
     "n_visits": 4
   },
   {
-    "pid": "135_Best Betina",
-    "cohort": "csv",
-    "therapy_cls": "always_mono",
-    "n_visits": 3
-  },
-  {
     "pid": "KIMULI UKASHA",
     "cohort": "pdf",
     "therapy_cls": "always_mono",
@@ -318,20 +372,8 @@
     "n_visits": 4
   },
   {
-    "pid": "157_Odong Raphael",
-    "cohort": "csv",
-    "therapy_cls": "always_poly",
-    "n_visits": 3
-  },
-  {
     "pid": "MENYA_ADRIAN",
     "cohort": "pdf",
-    "therapy_cls": "always_mono",
-    "n_visits": 3
-  },
-  {
-    "pid": "23_Namayanja Shuhaira",
-    "cohort": "csv",
     "therapy_cls": "always_mono",
     "n_visits": 3
   },
@@ -354,57 +396,15 @@
     "n_visits": 4
   },
   {
-    "pid": "39_Najjemba Christine",
-    "cohort": "csv",
-    "therapy_cls": "always_mono",
-    "n_visits": 3
-  },
-  {
-    "pid": "202_Kasule Amil",
-    "cohort": "csv",
-    "therapy_cls": "always_poly",
-    "n_visits": 3
-  },
-  {
     "pid": "299_Serunjogi Ibrahim",
     "cohort": "csv",
     "therapy_cls": "transition",
     "n_visits": 3
   },
   {
-    "pid": "47_Mugisha Silver",
-    "cohort": "csv",
-    "therapy_cls": "always_mono",
-    "n_visits": 3
-  },
-  {
-    "pid": "2_Mwania Sheldon",
-    "cohort": "csv",
-    "therapy_cls": "transition",
-    "n_visits": 3
-  },
-  {
-    "pid": "10_Muduku Matthew",
-    "cohort": "csv",
-    "therapy_cls": "always_poly",
-    "n_visits": 3
-  },
-  {
     "pid": "266_Ssebunya Hashim",
     "cohort": "csv",
     "therapy_cls": "always_mono",
-    "n_visits": 3
-  },
-  {
-    "pid": "156_Irumba Peter",
-    "cohort": "csv",
-    "therapy_cls": "transition",
-    "n_visits": 3
-  },
-  {
-    "pid": "107_Ismahan Mahad",
-    "cohort": "csv",
-    "therapy_cls": "transition",
     "n_visits": 3
   },
   {

@@ -234,8 +234,23 @@ TOTAL = len(PIDS) * 3
 # ── sidebar ───────────────────────────────────────────────────────────────────
 
 with st.sidebar:
+    existing_reviewer = st.session_state.get("reviewer", "")
+    if st.button("Start Fresh"):
+        target_reviewer = existing_reviewer.strip()
+        if not target_reviewer:
+            st.warning("Enter your name first.")
+        else:
+            delete_evals(target_reviewer)
+            st.session_state.evals = {}
+            suffix = f"__{target_reviewer}"
+            for key in list(st.session_state.keys()):
+                if suffix in key:
+                    del st.session_state[key]
+            st.rerun()
+
+    st.divider()
     st.header("Reviewer")
-    reviewer = st.text_input("Enter your name", value="")
+    reviewer = st.text_input("Enter your name", value=existing_reviewer)
 
     if not reviewer.strip():
         st.warning("Enter your name above to begin.")
@@ -258,15 +273,6 @@ with st.sidebar:
             file_name=f"dr_review_{reviewer}.csv",
             mime="text/csv",
         )
-
-    if st.button("Start Fresh", use_container_width=True):
-        delete_evals(reviewer)
-        st.session_state.evals = {}
-        suffix = f"__{reviewer}"
-        for key in list(st.session_state.keys()):
-            if suffix in key:
-                del st.session_state[key]
-        st.rerun()
 
     st.divider()
     st.header("Navigation")
