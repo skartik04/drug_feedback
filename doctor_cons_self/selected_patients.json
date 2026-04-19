@@ -1,0 +1,122 @@
+[
+  {
+    "pid": "39_Najjemba Christine",
+    "cohort": "csv",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "47_Mugisha Silver",
+    "cohort": "csv",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "110_Manozi Angella",
+    "cohort": "csv",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "135_Best Betina",
+    "cohort": "csv",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "266_Ssebunya Hashim",
+    "cohort": "csv",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "153_Kakande Huzaifa",
+    "cohort": "csv",
+    "therapy_cls": "always_poly",
+    "n_visits": 3
+  },
+  {
+    "pid": "202_Kasule Amil",
+    "cohort": "csv",
+    "therapy_cls": "always_poly",
+    "n_visits": 3
+  },
+  {
+    "pid": "333_Murungi Isaac",
+    "cohort": "csv",
+    "therapy_cls": "always_poly",
+    "n_visits": 3
+  },
+  {
+    "pid": "10_Muduku Matthew",
+    "cohort": "csv",
+    "therapy_cls": "always_poly",
+    "n_visits": 3
+  },
+  {
+    "pid": "157_Odong Raphael",
+    "cohort": "csv",
+    "therapy_cls": "always_poly",
+    "n_visits": 3
+  },
+  {
+    "pid": "LINDA ROSEMARY",
+    "cohort": "pdf",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "BULUMA_JONATHAN",
+    "cohort": "pdf",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "LUBOWA_JEREMIAH",
+    "cohort": "pdf",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "MUKISA_ADRIAN",
+    "cohort": "pdf",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "BUZIBA ARNOLD",
+    "cohort": "pdf",
+    "therapy_cls": "always_mono",
+    "n_visits": 3
+  },
+  {
+    "pid": "JANELLE_ELIZABETH_2",
+    "cohort": "pdf",
+    "therapy_cls": "always_poly",
+    "n_visits": 3
+  },
+  {
+    "pid": "SHALOM_KEEZA",
+    "cohort": "pdf",
+    "therapy_cls": "always_poly",
+    "n_visits": 3
+  },
+  {
+    "pid": "ATWONGYEIRE_ISRAEL_2",
+    "cohort": "pdf",
+    "therapy_cls": "always_poly",
+    "n_visits": 3
+  },
+  {
+    "pid": "ABONGA_MATTHEW",
+    "cohort": "pdf",
+    "therapy_cls": "transition",
+    "n_visits": 3
+  },
+  {
+    "pid": "NAKISEKA_SHALOM",
+    "cohort": "pdf",
+    "therapy_cls": "transition",
+    "n_visits": 3
+  }
+]
