@@ -79,6 +79,11 @@ UNITS = (
 
 TOTAL_EVALS = len(UNITS) * 3  # 120
 
+
+def unit_label(idx):
+    pid, _ = UNITS[idx]
+    return f"{idx + 1}. {pid}"
+
 # ── persistence ────────────────────────────────────────────────────────────────
 
 def _eval_path(reviewer):
@@ -248,7 +253,10 @@ with st.sidebar:
             delete_nav(target)
             st.session_state.evals = {}
             st.session_state.unit_idx = 0
+            st.session_state["pat_select"] = unit_label(0)
             st.session_state["visit_select"] = 1
+            st.session_state.pop("expander_scope", None)
+            st.session_state.pop("expander_nonce", None)
             for key in [k for k in list(st.session_state.keys()) if f"__{target}" in k]:
                 del st.session_state[key]
             st.rerun()
@@ -266,8 +274,11 @@ with st.sidebar:
         st.session_state.evals = load_evals(reviewer)
         nav = load_nav(reviewer)
         st.session_state.unit_idx = min(nav.get("unit_idx", 0), len(UNITS) - 1)
+        st.session_state["pat_select"] = unit_label(st.session_state.unit_idx)
         st.session_state["visit_select"] = nav.get("visit", 1) if nav.get("visit") in [1, 2, 3] else 1
 
+    if "evals" not in st.session_state:
+        st.session_state.evals = load_evals(reviewer)
     evals = st.session_state.evals
     st.caption(f"Progress: {len(evals)} / {TOTAL_EVALS} reviewed")
 
@@ -290,22 +301,24 @@ with st.sidebar:
         st.session_state.unit_idx = 0
     st.session_state.unit_idx = max(0, min(st.session_state.unit_idx, len(UNITS) - 1))
 
+    pending_idx = None
     col_prev, col_next = st.columns(2)
-    if col_prev.button("← Prev") and st.session_state.unit_idx > 0:
-        st.session_state.unit_idx -= 1
-        st.rerun()
-    if col_next.button("Next →") and st.session_state.unit_idx < len(UNITS) - 1:
-        st.session_state.unit_idx += 1
-        st.rerun()
+    if col_prev.button("← Prev"):
+        pending_idx = max(0, st.session_state.unit_idx - 1)
+    if col_next.button("Next →"):
+        pending_idx = min(len(UNITS) - 1, st.session_state.unit_idx + 1)
 
-    unit_idx = st.session_state.unit_idx
-    unit_labels = [f"{i+1}. {p}" for i, (p, _) in enumerate(UNITS)]
-    selected = st.selectbox("Patient", unit_labels, index=unit_idx, key="pat_select")
-    new_idx = unit_labels.index(selected)
-    if new_idx != unit_idx:
-        st.session_state.unit_idx = new_idx
-        st.rerun()
-    st.caption(f"{unit_idx + 1} of {len(UNITS)}")
+    unit_labels = [unit_label(i) for i in range(len(UNITS))]
+
+    if pending_idx is not None:
+        st.session_state.unit_idx = pending_idx
+        st.session_state["pat_select"] = unit_labels[pending_idx]
+    elif "pat_select" not in st.session_state:
+        st.session_state["pat_select"] = unit_labels[st.session_state.unit_idx]
+
+    selected = st.selectbox("Patient", unit_labels, index=st.session_state.unit_idx, key="pat_select")
+    st.session_state.unit_idx = unit_labels.index(selected)
+    st.caption(f"{st.session_state.unit_idx + 1} of {len(UNITS)}")
 
     save_nav(reviewer, st.session_state.unit_idx, visit_num)
 
@@ -466,7 +479,6 @@ with right:
     else:  # self-learning
         if not sys_data:
             st.warning("No output found for this patient / visit.")
-            st.stop()
         # Agent outputs — bordered box, all expanded
         agent_outputs = sys_data.get("agent_outputs", {})
         if agent_outputs:
